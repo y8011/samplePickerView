@@ -21,7 +21,6 @@ class ViewController: UIViewController
     var coffeeList = ["カフェラテ","カプチーノ","エスプレッソ"]
 
     lazy var all = [teaList,coffeeList]  // 参照されたときに設定される
-    var all1 = [[""],[""]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,18 +46,35 @@ class ViewController: UIViewController
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         print(component,#function)
         
-        return teaList.count
+        if component == 0 {
+            return teaList.count
+        }
+        else {
+            return coffeeList.count
+        }
     }
     // 4.設定　pickerviewに表示する文字の設定
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return teaList[row]
+        
+        if component == 0 {
+            return teaList[row]
+        }
+        else {
+            return coffeeList[row]
+        }
+        
     }
     
     
     
     // 6.　選択されたときに発動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(teaList[row])
+        if component == 0 {
+            print(teaList[row])
+        }
+        else {
+            print(coffeeList[row])
+        }
     }
     
     override func didReceiveMemoryWarning() {
